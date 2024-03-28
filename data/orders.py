@@ -10,5 +10,5 @@ class Order(SqlAlchemyBase, SerializerMixin):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     status = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     menus = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    total = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
+    total = sqlalchemy.Column(sqlalchemy.Float, nullable=True)
     client_info = sqlalchemy.Column(sqlalchemy.String, nullable=True)
