@@ -10,5 +10,5 @@ class Dish(SqlAlchemyBase, SerializerMixin):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    price = sqlalchemy.Column(sqlalchemy.Float, nullable=True)
+    price = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     img_path = sqlalchemy.Column(sqlalchemy.String, nullable=True)
