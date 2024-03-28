@@ -3,7 +3,7 @@ from flask_restful import abort, Resource
 
 from api.menu_parser import put_parser, parser
 from data import db_session
-from data.dish import Dish
+from data.menu import Dish
 
 
 def abort_if_dish_not_found(dish_id):
