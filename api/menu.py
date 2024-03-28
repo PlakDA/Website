@@ -19,7 +19,8 @@ class MenuResource(Resource):
         session = db_session.create_session()
         dish = session.get(Dish, dish_id)
         return jsonify({'successful': 'OK',
-                        'dish': dish.to_dict(only=('id', 'name', 'category','description', 'price', 'img_path'))})
+                        'dish': dish.to_dict(
+                            only=('id', 'name', 'category', 'description', 'weight', 'price', 'img_path'))})
 
     def delete(self, dish_id):
         abort_if_dish_not_found(dish_id)
@@ -37,6 +38,7 @@ class MenuResource(Resource):
         dish.name = args['name'] if args['name'] else dish.name
         dish.category = args['category'] if args['category'] else dish.category
         dish.description = args['description'] if args['description'] else dish.description
+        dish.weight = args['weight'] if args['weight'] else dish.weight
         dish.price = args['price'] if args['price'] else dish.price
         dish.img_path = args['img_path'] if args['img_path'] else dish.img_path
         session.add(dish)
@@ -49,8 +51,9 @@ class MenuListResource(Resource):
         session = db_session.create_session()
         menu = session.query(Dish).all()
         return jsonify({'successful': 'OK',
-                        'menu': [item.to_dict(only=('id', 'name', 'category', 'description', 'price', 'img_path'))
-                                 for item in menu]})
+                        'menu': [
+                            item.to_dict(only=('id', 'name', 'category', 'description', 'weight', 'price', 'img_path'))
+                            for item in menu]})
 
     def post(self):
         args = parser.parse_args()
@@ -59,6 +62,7 @@ class MenuListResource(Resource):
             name=args['name'],
             category=args['category'],
             description=args['description'],
+            weight=args['weight'],
             price=args['price'],
             img_path=args['img_path']
         )
